@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pokedex interactiva con las 9 generaciones de Pokemon. Busca, filtra y explora stats, habilidades y evoluciones.">
+  <title>Pokedex - Gen IV Style</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%238B1A1A' stroke='%235C0A0A' stroke-width='4'/><rect x='2' y='47' width='96' height='6' fill='%235C0A0A'/><circle cx='50' cy='50' r='14' fill='white' stroke='%235C0A0A' stroke-width='4'/><circle cx='50' cy='50' r='6' fill='%23F0F0F0'/></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/type-colors.css">
+</head>
+<body>
+  <div id="pokedex-shell">
+
+    <!-- Header con luces decorativas -->
+    <header id="pokedex-header">
+      <div class="header-lights">
+        <span class="light light-big-blue"></span>
+        <span class="light light-red"></span>
+        <span class="light light-yellow"></span>
+        <span class="light light-green"></span>
+      </div>
+      <h1 class="pokedex-title">POKEDEX</h1>
+    </header>
+
+    <!-- Contenido principal -->
+    <main id="pokedex-main">
+
+      <!-- Panel izquierdo: filtros + grid -->
+      <section id="list-panel">
+
+        <!-- Barra de filtros -->
+        <div id="filter-bar">
+          <div class="filter-group filter-search">
+            <label for="search-input">Nombre</label>
+            <input type="text" id="search-input" placeholder="Buscar por nombre..." autocomplete="off">
+          </div>
+          <div class="filter-group filter-dex">
+            <label for="dex-number-input">N.&ordm; Dex</label>
+            <input type="number" id="dex-number-input" placeholder="#" min="1" max="1025">
+          </div>
+          <div class="filter-group filter-type">
+            <label for="type-filter">Tipo</label>
+            <select id="type-filter">
+              <option value="">Todos</option>
+            </select>
+          </div>
+          <div class="filter-group filter-gen">
+            <label for="gen-filter">Generacion</label>
+            <select id="gen-filter">
+              <option value="">Todas</option>
+            </select>
+          </div>
+          <button id="clear-filters-btn" class="btn-accent" title="Limpiar filtros">&#10005;</button>
+        </div>
+
+        <!-- Contenedor del grid con scroll virtual -->
+        <div id="pokemon-grid-viewport">
+          <div id="pokemon-grid"></div>
+        </div>
+
+        <!-- Info de resultados -->
+        <div id="results-info">
+          <span id="results-count">0</span> Pokemon encontrados
+        </div>
+      </section>
+
+      <!-- Panel derecho: detalle -->
+      <section id="detail-panel">
+
+        <!-- Estado vacio -->
+        <div id="detail-empty">
+          <div class="empty-pokeball"></div>
+          <p>Selecciona un Pokemon para ver sus datos</p>
+        </div>
+
+        <!-- Contenido del detalle -->
+        <div id="detail-content" class="hidden">
+          <button id="detail-close-btn" class="btn-close" title="Cerrar">&times;</button>
+
+          <div id="detail-header">
+            <div id="detail-sprite-container">
+              <img id="detail-sprite" src="" alt="">
+            </div>
+            <div id="detail-name-block">
+              <h2 id="detail-name"></h2>
+              <span id="detail-dex-number" class="dex-number"></span>
+              <div id="detail-types"></div>
+              <span id="detail-generation" class="gen-label"></span>
+              <span id="detail-genus" class="genus-label"></span>
+            </div>
+          </div>
+
+          <div id="detail-description">
+            <h3>Descripcion de la Pokedex</h3>
+            <p id="detail-flavor-text"></p>
+          </div>
+
+          <div id="detail-physical-section">
+            <h3>Info Fisica</h3>
+            <div id="detail-physical"></div>
+          </div>
+
+          <div id="detail-abilities-section">
+            <h3>Habilidades</h3>
+            <div id="detail-abilities-list"></div>
+          </div>
+
+          <div id="detail-stats">
+            <h3>Estadisticas Base</h3>
+            <div id="detail-stats-bars"></div>
+          </div>
+
+          <div id="detail-evolution">
+            <h3>Linea Evolutiva</h3>
+            <div id="evolution-chain-container"></div>
+          </div>
+        </div>
+
+        <!-- Estado de carga del detalle -->
+        <div id="detail-loading" class="hidden">
+          <div class="spinner"></div>
+          <p>Cargando datos...</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Overlay de carga inicial -->
+  <div id="loading-overlay">
+    <div class="loading-content">
+      <div class="spinner large"></div>
+      <p id="loading-message">Cargando Pokedex...</p>
+      <div id="loading-progress-bar">
+        <div id="loading-progress-fill"></div>
+      </div>
+      <span id="loading-progress-text">0%</span>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
